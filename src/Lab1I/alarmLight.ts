@@ -50,9 +50,7 @@ export function createAlarmLight(topic: string) {
             clearInterval(interval);
             config.state = false;
             ledState = false;
-            console.log(`Turning Alarm off`)
-        } else {
-            console.log(`Turning Alarm on`)
+        } else if (obj.state === true) {
             config.state = true;
             clearInterval(interval);
             interval = setInterval(() => {

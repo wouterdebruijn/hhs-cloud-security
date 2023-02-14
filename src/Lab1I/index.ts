@@ -26,5 +26,28 @@ rl.on("line", (input) => {
             state: false,
         }
         mqtt.publish(topic, JSON.stringify(config));
+    } else if (input == "blue") {
+        const config: Partial<AlarmLightConfig> = {
+            color: {
+                red: 0,
+                green: 0,
+                blue: 255,
+            }
+        }
+        mqtt.publish(topic, JSON.stringify(config));
+    } else if (input == "red") {
+        const config: Partial<AlarmLightConfig> = {
+            color: {
+                red: 255,
+                green: 0,
+                blue: 0,
+            }
+        }
+        mqtt.publish(topic, JSON.stringify(config));
+    } else {
+        const config: Partial<AlarmLightConfig> = {
+            interval: parseInt(input),
+        }
+        mqtt.publish(topic, JSON.stringify(config));
     }
 });

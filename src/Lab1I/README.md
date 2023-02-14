@@ -1,1 +1,1 @@
-This lab adds the config topic to a lamp. Which makes it possible to set the lamps options in a JSON format.
+This lab creates an alarm, which toggles an hardware LED with multiple color options
