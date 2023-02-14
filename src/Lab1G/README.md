@@ -1,0 +1,1 @@
+This lab changes the lamp to only subscribe to one topic. This topic is always formatted as a JSON object which makes it possible to set the config or set the new sensor state.

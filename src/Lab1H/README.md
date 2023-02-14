@@ -1,0 +1,1 @@
+This lab adds the config topic to a lamp. Which makes it possible to set the lamps options in a JSON format.
