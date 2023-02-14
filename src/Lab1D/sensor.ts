@@ -14,7 +14,6 @@ const mqtt = connect("mqtt://broker.hivemq.com");
 // Create a new topic to publish to
 const topicName = "wouter-test-topic";
 const motionSensorTopic = `${topicName}/motion_sensor`;
-const lampTopic = `${topicName}/lamp`;
 
 // MOTION SENSOR
 // "Read" keyboard input
