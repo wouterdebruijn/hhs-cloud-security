@@ -14,6 +14,7 @@ export function createSensor(sensorTopic: string) {
     const mqtt = connect("mqtt://broker.hivemq.com");
 
     let state = false;
+    let timeout: NodeJS.Timeout;
 
     // "Read" keyboard input
     process.stdin.setEncoding("utf8");
@@ -24,5 +25,12 @@ export function createSensor(sensorTopic: string) {
         // Publish 255 to the topic
         mqtt.publish(sensorTopic, "255");
 
+        // Clear the timeout
+        clearTimeout(timeout);
+        
+        timeout = setTimeout(() => {
+            // After 5 seconds, publish 0 to the topic
+            mqtt.publish(sensorTopic, "0");
+        }, 5000);
     });
 }

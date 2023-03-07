@@ -12,7 +12,7 @@ export class MotionSensor extends Device {
     public onMessage(message: string) {
         const parsedMessage = JSON.parse(message);
 
-        // We invision a motion sensor that sends a message on detected motion, that doesn't reset itself.
+        // We expect a motion sensor that sends a message on detected motion, that doesn't reset itself.
         if (parsedMessage.state !== undefined) {
             this.state = parsedMessage.state;
             
