@@ -1,1 +1,0 @@
-This lab creates an alarm, which toggles an hardware LED with multiple color options
