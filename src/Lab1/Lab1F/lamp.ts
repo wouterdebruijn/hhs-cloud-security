@@ -15,7 +15,6 @@ export function createLamp(sensorTopic: string) {
     // LAMP
     mqtt.subscribe(sensorTopic);
 
-    let timeout = setTimeout(() => {});
     let state = 0;
 
     // Listen for messages on the topic
@@ -28,22 +27,9 @@ export function createLamp(sensorTopic: string) {
             return;
         }
 
-        // Reset the timeout on lamp on messages
-        if (newState > 0) {
-            clearTimeout(timeout);
-            // Override the timeout if it exists
-            timeout = setTimeout(() => {
-                state = 0;
-                console.log("Lamp turned off!");
-            }, 5000);
-        }
-
-        // Only update the hardware if the state is different
         if (newState === state) return;
 
         state = newState;
-        if (state !== 0) {
-            console.log(`Lamp turned to a brightness of: ${newState}!`);
-        }
+        console.log(`Lamp state: ${state}`);
     });
 }
