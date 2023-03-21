@@ -215,6 +215,9 @@ lockDoor on test_device_nodejs:
 ```
 
 **13. You can also test an IoT device via the CLI without having a backend. See CLI reference: https://docs.microsoft.com/en-us/cli/azure/iot/hub?view=azure-cli-latest#az-iot-hub-invoke-device-method**\
+```
+az iot hub invoke-device-method --hub-name WoutersHub --device-id test_device_nodejs --method-name getDeviceLog --method-payload '{"version":"1.0"}'
+```
 This also works eliminating the need of the test service script.
 
 **14. Have a fellow student test your IoT door. They should be able to connect to your IoT Hub by running the service you previously created. Consider what data you need to share.**\

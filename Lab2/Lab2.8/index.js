@@ -73,7 +73,7 @@ function printDeviceMethodRequest(request) {
 
     // if there's a payload just do a default console log on it
     if(request.payload) {
-        console.log('Payload:\n' + request.payload);
+        console.log('Payload:\n' + JSON.stringify(request.payload));
     }
 }
 

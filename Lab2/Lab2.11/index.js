@@ -42,6 +42,8 @@ function onConnect(err) {
                 twin.on('properties.desired', (desiredChange) => {
                     isRedInColor = desiredChange.isRedInColor;
 
+                    console.log({isRedInColor});
+
                     // Report the device state
                     twin.properties.reported.update({ isRedInColor }, (err) => console.log(err ? 'Error updating reported properties' : 'Reported properties updated'));
                 });
