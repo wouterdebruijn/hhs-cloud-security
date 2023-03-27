@@ -46,8 +46,51 @@ module.exports = async function (context, req) {
 };
 ```
 
+Na het publiseren naar Azure was het ook nodig om een "code" param mee te geven. Ik vermoed dat dit een standaard beveiliging is voor Put/Post methodes.
+
+`https://httpexamplealarmwouter.azurewebsites.net/api/alarm/1?code=somesecurecodegeneratedbyazure`
+
+
 # Lab3B
-Omdat de client dan aangepast moet worden wanneer er iets met de lamp veranderd. Je wilt de client API pretty houden.
+Omdat de client dan aangepast moet worden wanneer er iets met de lamp veranderd. Je wilt de client API pretty houden. De Azure functions dienen als een facade.
 
 # Lab3C
 Dit kan, in de Azure function zou ik de Azure SDK toevoegen om de devices aan te sturen. Dit kan allemaal geregeld worden in de Azure function, hierdoor heeft de client geen aanpassingen nodig.
+
+# Lab3D
+Ik heb een nieuwe functie gemaakt die via de "azure-iothub" package mijn eerder gemaakte device zijn direct method aanroept. Net zoals bij de eerdere opdracht heb ik een array gebruikt op de devices in op te slaan, hierna wordt er door middel van een ID een device geselecteerd en aangeroepen. Ook heb ik gebruik gemaakt van de async functionaliteit om op een antwoord te wachten en deze naar de gebruiker terug te sturen.
+
+```javascript
+const targetDevice =
+  doors.find((d) => d.id == parseInt(req.params.id)).device;
+
+const methodParams = {
+  methodName: "lockDoor",
+  payload: JSON.stringify({
+    locked: req.body.locked,
+  }),
+  responseTimeoutInSeconds: 15,
+};
+
+try {
+  // Wait for the response from the device
+  const request = await client.invokeDeviceMethod(targetDevice, methodParams);
+
+  context.res = {
+    body: JSON.stringify(request.result),
+  };
+} catch (error) {
+  context.res = {
+    status: 500,
+    body: error.message,
+  };
+}
+```
+
+# Lab3E
+Dit werkt, ook de tweede functie is beschikbaar via Azure.
+https://httpexampledoor.azurewebsites.net/api/door/:id
+
+Hierbij is net zoals hiervoor een code param nodig als authenticatie. Het maakt niet uit of dit vanaf mijn laptop wordt verstuurd of vanaf een andere laptop.
+
+# Lab3F
