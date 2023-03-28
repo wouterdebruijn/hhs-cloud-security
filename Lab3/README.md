@@ -99,5 +99,5 @@ Ik heb een Event grid trigger gemaakt en daarbij een event subscription toegevoe
 # Lab3H
 In heb een subscription gemaakt waarbij er gekeken wordt of  de temperatuur hoger is dan 25.
 
-# Lab3J
+# Lab3I
 Ik heb de trigger aangepast zodat deze de eerder gemaakte device aanroep logica van D gebruikt om de deur open en dicht te zetten.
