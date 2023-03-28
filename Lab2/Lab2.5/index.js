@@ -41,12 +41,13 @@ function messageHandler(msg) {
 
 function generateMessage() {
   const windSpeed = 10 + (Math.random() * 4); // range: [10, 14]
-  const temperature = 20 + (Math.random() * 10); // range: [20, 30]
+  const temperature = +process.argv[2];
   const humidity = 60 + (Math.random() * 20); // range: [60, 80]
   const dateUtc = new Date().toUTCString();
   const data = JSON.stringify({ deviceId: 'myFirstDevice', windSpeed: windSpeed, temperature: temperature, humidity: humidity, timestamp: dateUtc });
   const message = new Message(data);
   console.log(message);
+  message.contentEncoding = 'utf-8';
   message.contentType = 'application/json';
   console.log(message);
 
